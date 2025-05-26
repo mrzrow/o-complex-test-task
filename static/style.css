@@ -1,0 +1,82 @@
+body {
+  font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+  background: #f7fafd;
+  color: #222;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 2.5em;
+  font-weight: 700;
+}
+
+form#weather-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px 0 20px 0;
+  gap: 10px;
+}
+
+#search-btn {
+  background: #2196f3;
+  color: #fff;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 5px 0 0 5px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+#search-btn:hover {
+  background: #1769aa;
+}
+
+#city-input {
+  padding: 10px;
+  font-size: 1em;
+  border: 1px solid #bcdffb;
+  border-radius: 0 5px 5px 0;
+  outline: none;
+  min-width: 220px;
+}
+
+#result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 25px;
+}
+
+.city-name {
+  font-size: 2em;
+  font-weight: 600;
+  margin-bottom: 18px;
+  text-align: center;
+}
+
+.weather-table {
+  border-collapse: collapse;
+  min-width: 260px;
+  background: #fff;
+  box-shadow: 0 2px 8px #e3eaf3;
+}
+
+.weather-table td {
+  padding: 12px 18px;
+  border: 1px solid #e3eaf3;
+  font-size: 1.1em;
+}
+
+.weather-table tr:first-child td {
+  border-top: none;
+}
+
+.weather-table tr td:first-child {
+  font-weight: 500;
+  background: #f3f8fc;
+}

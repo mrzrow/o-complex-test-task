@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Weather by City</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <h1>Check the Weather</h1>
+  <form id="weather-form" autocomplete="off">
+    <input type="text" id="city-input" list="city-list" placeholder="Enter city" required />
+    <button type="submit" id="search-btn">Search</button>
+    <datalist id="city-list"></datalist>
+  </form>
+  <div id="result"></div>
+
+  <script>
+    const cityInput = document.getElementById('city-input');
+    const cityList = document.getElementById('city-list');
+    let lastQuery = '';
+
+    cityInput.addEventListener('input', async () => {
+      const query = cityInput.value.trim();
+      if (query.length < 2 || query === lastQuery) return;
+      lastQuery = query;
+
+      try {
+        const res = await fetch(`/suggest?query=${encodeURIComponent(query)}`);
+        if (!res.ok) throw new Error('Suggestion error');
+        const cities = await res.json();
+
+        cityList.innerHTML = '';
+        for (const city of cities) {
+          const option = document.createElement('option');
+          option.value = city;
+          cityList.appendChild(option);
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    });
+
+    document.getElementById('weather-form').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const city = cityInput.value;
+      const resDiv = document.getElementById('result');
+      resDiv.textContent = 'Loading...';
+
+      try {
+        const response = await fetch(`/weather?city=${encodeURIComponent(city)}`);
+        if (!response.ok) throw new Error('Failed to get weather data');
+        const data = await response.json();
+
+        resDiv.innerHTML = `
+          <div class="city-name">${data.city}</div>
+          <table class="weather-table">
+            <tr>
+              <td>Temperature</td>
+              <td>${data.temperature}°C</td>
+            </tr>
+            <tr>
+              <td>Weather</td>
+              <td>${data.weather}</td>
+            </tr>
+          </table>
+        `;
+      } catch (error) {
+        resDiv.textContent = 'Error: ' + error.message;
+      }
+    });
+  </script>
+</body>
+</html>
