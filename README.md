@@ -15,7 +15,7 @@ Rename `.env-template` to `.env`
 ### Docker:
 
 1. Run `docker build -t [image_name] .`
-2. Run `docker run -p [port:port] o-complex-app`
+2. Run `docker run -p [port:port] [image_name]`
 
 ## Examples
 
