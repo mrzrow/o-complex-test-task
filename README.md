@@ -5,9 +5,17 @@ By entering the name of a city, the app displays the current temperature and gen
 
 ## Run
 
-1. Rename `.env-template` to `.env`
-2. Instal dependencies from `requirements.txt`
-3. Run `uvicorn src.main:app`
+Rename `.env-template` to `.env`
+
+### Manually:
+
+1. Instal dependencies from `requirements.txt`
+2. Run `uvicorn src.main:app`
+
+### Docker:
+
+1. Run `docker build -t [image_name] .`
+2. Run `docker run -p [port:port] o-complex-app`
 
 ## Examples
 
